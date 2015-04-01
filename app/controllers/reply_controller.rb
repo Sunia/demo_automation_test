@@ -1,4 +1,5 @@
 class ReplyController < ApplicationController
+  skip_before_filter :authenticate_user!
 
   def ask_answer
     @sender = Sender.where(:unique_key => params[:link]).first
