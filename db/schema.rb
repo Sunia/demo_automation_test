@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329140022) do
+ActiveRecord::Schema.define(version: 20150403101253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150329140022) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "senders", force: :cascade do |t|
+  create_table "sender_details", force: :cascade do |t|
     t.string   "unique_key", default: "", null: false
     t.text     "reply",      default: "", null: false
     t.integer  "email_id",                null: false

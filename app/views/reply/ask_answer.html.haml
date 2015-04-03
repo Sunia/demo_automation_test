@@ -7,7 +7,7 @@
   .clearfix
 
 .innerLR
-  = form_for :sender, :url => {:controller => "reply", :action => "submit_answer", :method => "post" } do |f|
+  = form_for :sender_detail, :url => {:controller => "reply", :action => "submit_answer", :method => "post" } do |f|
 
     .widget.widget-tabs
       .widget-body
@@ -31,7 +31,7 @@
                 = f.text_field :reply, placeholder: "Your answer...", required: true
 
                 // Sender
-                = f.hidden_field :id, value: @sender.id
+                = f.hidden_field :id, value: @sender_detail.id
                 .separator
             %hr.separator.bottom/
 

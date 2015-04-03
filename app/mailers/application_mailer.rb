@@ -8,7 +8,7 @@ class ApplicationMailer < ActionMailer::Base
   def generate_unique_link(email)
     loop do
       token = Digest::SHA1.hexdigest email +  SecureRandom.hex
-      user = Sender.find_by_unique_key(token)
+      user = SenderDetail.find_by_unique_key(token)
       return token unless user
     end
   end
@@ -21,7 +21,7 @@ class ApplicationMailer < ActionMailer::Base
     @shorten_link = Rails.application.secrets.sender_link + random_key
 
     # Create the sender details
-    sender_details = Sender.create(:email_id => email.id, :user_id => @sender.id, :unique_key => random_key)
+    sender_details = SenderDetail.create(:email_id => email.id, :user_id => @sender.id, :unique_key => random_key)
     return @shorten_link, @sender
   end
 

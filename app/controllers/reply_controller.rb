@@ -3,20 +3,20 @@ class ReplyController < ApplicationController
 
   # To ask the reply of the question
   def ask_answer
-    @sender = Sender.where(:unique_key => params[:link]).first
-    if @sender.nil?
+    @sender_detail = SenderDetail.where(:unique_key => params[:link]).first
+    if @sender_detail.nil?
       flash[:notice] = "Invalid Token"
       redirect_to sorry_path
     else
-      email = Email.find(@sender.email_id)
+      email = Email.find(@sender_detail.email_id)
       @question = email.question
     end
   end
 
   # Submit the answer
   def submit_answer
-    @sender = Sender.find(params[:sender][:id])
-    @sender.update_attributes(:reply => params[:sender][:reply])
+    @sender_detail = SenderDetail.find(params[:sender_detail][:id])
+    @sender_detail.update_attributes(:reply => params[:sender_detail][:reply])
 
     redirect_to thanks_path
   end
