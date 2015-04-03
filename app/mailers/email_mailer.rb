@@ -21,7 +21,7 @@ class EmailMailer < ApplicationMailer
 
     def generate_unique_token(email)
       loop do
-        token = SecureRandom.hex
+        token = Digest::SHA1.hexdigest email +  SecureRandom.hex
         user = Sender.find_by_unique_key(token)
         return token unless user
       end
