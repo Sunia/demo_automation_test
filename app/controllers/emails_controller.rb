@@ -28,28 +28,25 @@ class EmailsController < ApplicationController
     @listener = User.where(:email => params[:email][:listener_id]).first
 
     if @listener.nil?
-      @listener = User.create(:email => params[:email][:listener_id], :password => "12345678")
+      @listener = User.create(:email => params[:email][:listener_id], :password => Rails.application.secrets.default_password)
     end
-
     # Check for the Sender
     params[:email][:sender_ids] = [""]
+
     params[:sender_emails].each do |sender|
       @sender = User.where(:email => sender).first
   
       if @sender.nil?
-        @sender = User.create(:email => sender, :password => "12345678")
+        @sender = User.create(:email => sender, :password => Rails.application.secrets.default_password)
       end
       params[:email][:sender_ids] << @sender.id
     end
-
     params[:email][:listener_id] = @listener.id
     @email = Email.new(email_params)
     respond_to do |format|
       if @email.save
         EmailMailer.send_email(@email).deliver_now 
         format.html { redirect_to :back, notice: 'Email has sent to selected senders for replying the answer' }
-        flash[:notice] = "Email has sent"
-        format.json { render :show, status: :created, location: @email }
       else
         format.html { render :new }
         format.json { render json: @email.errors, status: :unprocessable_entity }
