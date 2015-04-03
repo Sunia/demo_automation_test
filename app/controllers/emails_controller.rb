@@ -22,26 +22,21 @@ class EmailsController < ApplicationController
   end
 
   # POST /emails
-  # POST /emails.json
+
   def create
     # Check for the listener.
-    @listener = User.where(:email => params[:email][:listener_id]).first
+    @listener = user_find_or_create(params[:email][:listener_id]) 
+    params[:email][:listener_id] = @listener.id
 
-    if @listener.nil?
-      @listener = User.create(:email => params[:email][:listener_id], :password => Rails.application.secrets.default_password)
-    end
     # Check for the Sender
     params[:email][:sender_ids] = [""]
 
-    params[:sender_emails].each do |sender|
-      @sender = User.where(:email => sender).first
-  
-      if @sender.nil?
-        @sender = User.create(:email => sender, :password => Rails.application.secrets.default_password)
-      end
+    params[:sender_emails].each do |sender_email|
+      @sender = user_find_or_create(sender_email)
       params[:email][:sender_ids] << @sender.id
     end
-    params[:email][:listener_id] = @listener.id
+
+    # Email wil be created. 
     @email = Email.new(email_params)
     respond_to do |format|
       if @email.save
@@ -94,4 +89,12 @@ class EmailsController < ApplicationController
     def email_params
       params.require(:email).permit(:question, :listener_id, :questioner_id, :sender_ids => [])
     end
+
+    def user_find_or_create(email)
+      @user = User.where(:email => email).first
+      @user = User.create(:email => email, :password => Rails.application.secrets.default_password)  if @user.nil?
+      return @user
+    end
+
 end
+

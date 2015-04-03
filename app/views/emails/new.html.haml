@@ -3,7 +3,7 @@
   %br
   %h3
     Send Email
-    %span | to ask Question to particular senders on behalf of one user.
+    %span | to ask Question from senders on behalf of Listener.
   .clearfix
 
 .innerLR
@@ -17,8 +17,8 @@
             // Choose Question
             .row-fluid
               .span3
-                %strong Add question
-                %p.muted Add question to ask from all senders..
+                %strong Add Question
+                %p.muted Add Question to ask from all senders..
               .span9
                 %label{:for => "inputTitle"} Add question
                 = f.text_field :question, placeholder: "Compose question...", required: true
@@ -36,7 +36,6 @@
                 =# f.collection_select :listener_id, User.order(:username),:id,:username, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
                 .separator
             %hr.separator.bottom/
-
             // Senders
             .row-fluid
               .span3
@@ -47,9 +46,9 @@
                 =# f.collection_select :sender_ids, User.order(:username), :id,:username, {:include_blank => false}, class: "span6"  ,placeholder: "Enter Email ID ...", multiple: true, required: true 
                 %input{:name => "sender_emails[]", :type => "email", :placeholder => "Add Sender's Email here", :required => true}/
                 %br
-                %input{:name => "sender_emails[]", :type => "text", :placeholder => "Add Sender's Email here", :required => true}/
+                %input{:name => "sender_emails[]", :type => "text", :placeholder => "Add Sender's Email here"}/
                 %br
-                %input{:name => "sender_emails[]", :type => "text", :placeholder => "Add Sender's Email here", :required => true}/
+                %input{:name => "sender_emails[]", :type => "text", :placeholder => "Add Sender's Email here"}/
  
                 // Questioner
                 = f.hidden_field :questioner_id, value: current_user.id
