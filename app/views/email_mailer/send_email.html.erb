@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h4> Hi <%= @sender.email %>, Its <%= @questioner %> </h4>
+    <h4> Hi <%= @sender.email %>, Its <%= @email[:questioner] %> </h4>
     <br>
-    <%= @listener %> wants to know <%= @question %> ?
+    <%= @email[:listener] %> wants to know <%= @email[:question] %> ?
     <br>
     Please answer the question by clicking on this shorten link <%= @shorten_link %>
     <br>

@@ -40,7 +40,12 @@ class EmailsController < ApplicationController
     @email = Email.new(email_params)
     respond_to do |format|
       if @email.save
-        EmailMailer.send_email(@email).deliver_now 
+
+        # Email details will be generated
+        email_details = @email.generate_email_details
+        # EmailMailer will be called with email_details for sending email to different senders.
+        EmailMailer.send_email(email_details).deliver_now 
+
         format.html { redirect_to :back, notice: 'Email has sent to selected senders for replying the answer' }
       else
         format.html { render :new }
