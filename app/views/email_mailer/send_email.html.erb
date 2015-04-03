@@ -4,7 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h4> Hi <%= @sender.email %>, Its <%= @email[:questioner] %> </h4>
+    <h3> Hi <%= @sender.username.blank? ? @sender.email : @sender.username %> </h3> 
+    <br>
+    <h4> <%= @email[:questioner] %> here </h4>
     <br>
     <%= @email[:listener] %> wants to know <%= @email[:question] %> ?
     <br>
