@@ -16,7 +16,7 @@ class ReplyController < ApplicationController
   # Submit the answer
   def submit_answer
     @sender_detail = SenderDetail.find(params[:sender_detail][:id])
-    @sender_detail.update_attributes(:reply => params[:sender_detail][:reply])
+    @sender_detail.update_attributes(:reply => params[:sender_detail][:reply], :reply_time => Time.now)
 
     redirect_to thanks_path
   end

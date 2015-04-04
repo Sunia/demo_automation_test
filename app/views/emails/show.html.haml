@@ -29,19 +29,29 @@
           %tr
             %td= ""
             %td= "Questioner"
-            %td= User.find(@email.questioner_id).try(:username)
+            %td= User.where(:id => @email.questioner_id).first.try(:username)
+            %td= ""
             %td= ""
             %td= ""
           %tr
             %td= ""
             %td= "Listener"
-            %td= EmailSender.find(@email.listener_id).try(:first_name)
+            %td= EmailSender.where(:id => @email.listener_id).first.try(:first_name)
             %td= ""
             %td= ""
-
+            %td= ""
           %tr
             %td= ""
             %td= "Senders"
             %td= ""
             %td= ""
             %td= ""
+            %td= ""
+          - @senders.each do |sender|
+            %tr
+              %td= ""
+              %td= ""
+              %td= sender.email
+              %td= SenderDetail.where(:user_id => sender.id).first.try(:reply)
+              %td= SenderDetail.where(:user_id => sender.id).first.try(:reply_time)
+              %td= ""

@@ -11,6 +11,7 @@ class EmailsController < ApplicationController
   # GET /emails/1.json
   def show
     @email = Email.find(params[:id])
+    @senders = EmailSender.where(id: @email.sender_ids)
   end
 
   # GET /emails/new
@@ -37,8 +38,9 @@ class EmailsController < ApplicationController
 
       # Sender Email is saved in SenderEmail.
       @sender = emailsender_find_or_create(sender_email) unless sender_email.blank?
-      params[:email][:sender_ids] << @sender.id
+      params[:email][:sender_ids] << @sender.id unless sender_email.blank?
     end
+      params[:email][:sender_ids] = params[:email][:sender_ids].uniq
 
     # Email wil be created. 
     @email = Email.new(email_params)
