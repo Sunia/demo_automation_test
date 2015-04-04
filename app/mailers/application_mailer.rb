@@ -15,7 +15,8 @@ class ApplicationMailer < ActionMailer::Base
 
 # Create the sender details when email sends to the sender.
   def create_sender_details(sender_id, email_id)
-    @sender = User.find(sender_id)
+    @sender = EmailSender.where(:id => sender_id).first
+
     random_key = generate_unique_link(@sender.email)
 
     @shorten_link = Rails.application.secrets.sender_link + random_key

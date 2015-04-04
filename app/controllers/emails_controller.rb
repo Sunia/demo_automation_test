@@ -25,14 +25,17 @@ class EmailsController < ApplicationController
 
   def create
     # Check for the listener.
-    @listener = user_find_or_create(params[:email][:listener_id]) 
+    # Listener Email and first_name is saved in SenderEmail.
+    @listener = emailsender_find_or_create(params[:email][:listener_id], params[:first_name]) 
     params[:email][:listener_id] = @listener.id
 
     # Check for the Sender
     params[:email][:sender_ids] = [""]
 
     params[:sender_emails].each do |sender_email|
-      @sender = user_find_or_create(sender_email)
+
+      # Sender Email is saved in SenderEmail.
+      @sender = emailsender_find_or_create(sender_email) unless sender_email.blank?
       params[:email][:sender_ids] << @sender.id
     end
 
@@ -95,10 +98,14 @@ class EmailsController < ApplicationController
       params.require(:email).permit(:question, :listener_id, :questioner_id, :sender_ids => [])
     end
 
-    def user_find_or_create(email)
-      @user = User.where(:email => email).first
-      @user = User.create(:email => email, :password => Rails.application.secrets.default_password)  if @user.nil?
-      return @user
+    def emailsender_find_or_create(email,first_name = "")
+      # If email already saved then update first_name 
+      @email_sender = EmailSender.where(:email => email).first
+      @email_sender.update_attributes(:first_name => first_name)  unless @email_sender.nil?
+
+      # Create new email if not already exists.
+      @email_sender = EmailSender.create(:email => email, :first_name => first_name)  if @email_sender.nil?
+      return @email_sender
     end
 
 end

@@ -33,6 +33,7 @@
               .span9
                 %label{:for => "inputTitle"} Listener Name
                 = f.email_field :listener_id, placeholder: "Add Listener's email here", required: true
+                %input{:name => "first_name", :type => "text", :placeholder => "Add Listener name here", :required => true}/
                 =# f.collection_select :listener_id, User.order(:username),:id,:username, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
                 .separator
             %hr.separator.bottom/
