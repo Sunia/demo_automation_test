@@ -1,0 +1,47 @@
+/ Breadcrumb
+%ul.breadcrumb
+  %li
+    %i
+      Question 
+  %li.divider
+  %li Detail
+.separator.bottom
+/ // Breadcrumb END
+.innerLR
+  .widget
+    .widget-head
+      %h5 Detail of the Question
+    .widget-body
+      %table.dynamicTable.table.table-striped.table-bordered.table-condensed
+        / Table heading
+        %thead
+          %tr
+        / // Table heading END
+        / Table body
+        %tbody
+          %tr
+            %td= "Question"
+            %td= ""
+            %td= @email.question
+            %td= ""
+            %td= @email.created_at
+            %td= ""
+          %tr
+            %td= ""
+            %td= "Questioner"
+            %td= User.find(@email.questioner_id).try(:username)
+            %td= ""
+            %td= ""
+          %tr
+            %td= ""
+            %td= "Listener"
+            %td= EmailSender.find(@email.listener_id).try(:first_name)
+            %td= ""
+            %td= ""
+
+          %tr
+            %td= ""
+            %td= "Senders"
+            %td= ""
+            %td= ""
+            %td= ""

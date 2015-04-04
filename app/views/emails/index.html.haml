@@ -1,0 +1,36 @@
+/ Breadcrumb
+%ul.breadcrumb
+  %li
+    %i
+      Question's 
+  %li.divider
+  %li List
+.separator.bottom
+/ // Breadcrumb END
+.innerLR
+  .widget
+    .widget-head
+      %h5 Details of the Questions
+    .widget-body
+      %table.dynamicTable.table.table-striped.table-bordered.table-condensed
+        / Table heading
+        %thead
+          %tr
+            %th ID
+            %th Question
+            %th Questioner
+            %th Listener
+            %th Actions
+
+        / // Table heading END
+        / Table body
+        %tbody
+        - @emails.each do |email|
+          %tr
+            %td= email.id
+            %td= email.question
+            %td= User.find(email.questioner_id).try(:username)
+            %td= EmailSender.find(email.listener_id).try(:first_name)
+            
+            %td= link_to 'Show', email
+            %td= link_to 'Delete', email_path(email), method: :delete, data: { confirm: 'Are you sure?' } 
