@@ -52,6 +52,10 @@
               %td= ""
               %td= ""
               %td= sender.email
-              %td= SenderDetail.where(:user_id => sender.id).first.try(:reply)
-              %td= SenderDetail.where(:user_id => sender.id).first.try(:reply_time)
-              %td= ""
+              %td=  SenderDetail.where(:user_id => sender.id, :email_id => @email.id).first.try(:reply)
+              %td= SenderDetail.where(:user_id => sender.id , :email_id => @email.id).first.try(:reply_time)
+              - if SenderDetail.where(:user_id => sender.id, :email_id => @email.id).first.try(:is_replied) == false
+              
+                %td= "Not Replied"
+              - else
+                %td= "Replied"

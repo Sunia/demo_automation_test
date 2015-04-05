@@ -1,0 +1,41 @@
+#content
+  .separator.bottom
+  .heading-buttons
+    %h3
+      Welcome
+      = @listener.first_name
+    %br
+    %br
+    %h5
+      = User.find(@email.questioner_id).username
+      has asked question for you  
+    %br
+    %h5
+      Question is 
+      = @email.question
+    %br
+    %br
+      We have some responses for you from some of your friends
+    
+    .clearfix
+  .separator.bottom
+  
+  - @senders.each do |sender_id|
+  
+    .innerLR
+      %b 
+      %pre
+        Reply of -> 
+        = (EmailSender.find(sender_id).email)
+        %br
+        = SenderDetail.where(:email_id => @email, :user_id => sender_id).first.reply
+      
+      
+
+  %br
+  %br
+  %br
+
+
+
+

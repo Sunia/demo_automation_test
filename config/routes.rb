@@ -14,10 +14,11 @@ Rails.application.routes.draw do
 
   get 'reply/:link' => 'reply#ask_answer'
   post 'submit_answer' => 'reply#submit_answer'
+  get 'response/:link' => 'response#listener_response'
 
   get '/thanks' => 'reply#thanks_message', :as => "thanks"
   get '/sorry' => 'reply#sorry_message', :as => "sorry"
-  get '/questions' => 'emails#index', :as => "questions"
+  #get '/questions' => 'emails#index', :as => "questions"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

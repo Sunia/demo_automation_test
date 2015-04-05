@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404163254) do
+ActiveRecord::Schema.define(version: 20150405170236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,23 +24,26 @@ ActiveRecord::Schema.define(version: 20150404163254) do
   end
 
   create_table "emails", force: :cascade do |t|
-    t.string   "email",         default: "", null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "email",         default: "",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.text     "question"
     t.integer  "listener_id"
     t.integer  "questioner_id"
-    t.string   "sender_ids",    default: [],              array: true
+    t.string   "sender_ids",    default: [],                 array: true
+    t.text     "listener_link"
+    t.boolean  "is_email_sent", default: false
   end
 
   create_table "sender_details", force: :cascade do |t|
-    t.string   "unique_key", default: "", null: false
-    t.text     "reply",      default: "", null: false
-    t.integer  "email_id",                null: false
-    t.integer  "user_id",                 null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "unique_key", default: "",    null: false
+    t.text     "reply",      default: "",    null: false
+    t.integer  "email_id",                   null: false
+    t.integer  "user_id",                    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.datetime "reply_time"
+    t.boolean  "is_replied", default: false
   end
 
   create_table "users", force: :cascade do |t|

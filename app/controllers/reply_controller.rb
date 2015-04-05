@@ -13,17 +13,45 @@ class ReplyController < ApplicationController
     end
   end
 
-  # Submit the answer
   def submit_answer
+    # Find the record of the Sender details and update reply and status of reply.
     @sender_detail = SenderDetail.find(params[:sender_detail][:id])
-    @sender_detail.update_attributes(:reply => params[:sender_detail][:reply], :reply_time => Time.now)
+    @sender_detail.update_attributes(:reply => params[:sender_detail][:reply], :reply_time => Time.now, :is_replied => true)
 
-    redirect_to thanks_path
+   # Check whether all senders have replied to the answer
+   if all_replied
+    # send email to listener.
+     send_mail_to_listener
+   end
+
+   redirect_to thanks_path
   end
 
-  def thanks_message
+  private 
+
+   def all_replied
+     all_replied = false
+     @email_id = @sender_detail.email_id
+     @senders = SenderDetail.where(:email_id => @email_id)
+
+     #@senders.each {|sender| sender.is_replied == true ? all_replied = true : all_replied = false}
+     @senders.each do |sender|
+       all_replied = false and return if sender.is_replied == false
+         
+       all_replied = true if sender.is_replied == true
+     end
+       
+     return all_replied
+   end
+
+  def send_mail_to_listener
+    # Find the listener of the email
+    listener_id = Email.find(@email_id).listener_id
+    @listener = EmailSender.where(:id => listener_id).first
+
+    # send email
+    email = Email.where(:id => @email_id).first
+    EmailMailer.listener_mail(@listener, email).deliver_now
   end
 
-  def sorry_message
-  end
 end
