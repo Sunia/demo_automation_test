@@ -25,7 +25,7 @@
     .innerLR
       %b 
       %pre
-        Reply of -> 
+        Reply of 
         = (EmailSender.find(sender_id).email)
         %br
         = SenderDetail.where(:email_id => @email, :user_id => sender_id).first.reply
