@@ -50,7 +50,7 @@ class EmailsController < ApplicationController
         # Email details will be generated
         email_details = @email.generate_email_details
         # EmailMailer will be called with email_details for sending email to different senders.
-        EmailMailer.send_email(email_details).deliver_now 
+        EmailMailer.send_email(email_details) 
 
         format.html { redirect_to :back, notice: 'Email has sent to selected senders for replying the answer' }
       else
@@ -83,12 +83,12 @@ class EmailsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  def send_email
-    EmailMailer.send_email(params[:email][:email]).deliver_now 
-    flash[:notice] = "Email has sent"
-    redirect_to :back
-  end
+#   
+  # def send_email
+    # EmailMailer.send_email(params[:email][:email]).deliver_now 
+    # flash[:notice] = "Email has sent"
+    # redirect_to :back
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
