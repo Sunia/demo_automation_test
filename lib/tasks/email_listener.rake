@@ -6,7 +6,8 @@ namespace :after24hours do
   # and creates it if it does not, it then creates the file.
   task :email => :environment do
     # execute mail after 24 hours.
-    @emails = Email.where("created_at < ?", Time.now - 24.hours)
+    @emails =  Email.where("created_at < ?", Time.now - 24.hours).where(:is_email_sent => false)
+
     unless @emails.nil?
       EmailMailer.mail_listener_24hours(@emails)
     end
