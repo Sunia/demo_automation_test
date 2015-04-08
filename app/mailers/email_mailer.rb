@@ -19,17 +19,7 @@ class EmailMailer < ApplicationMailer
       
       # Email send to particular senders for replying the email.
       mail_to_sender(@sender,@email, @shorten_link).deliver
-      puts "H"
     end
-  end
-
-  def listener_mail(listener , email)
-    # Generate unique token for each listener and update the email with listener link.
-    # return @shorten_link
-    @listener = listener
-    create_listener_details(@listener, email)
-    # Email send to particular listener for showing the response.
-    mail(to: @listener.email, subject: 'We have a message for you') 
   end
 
   def mail_to_sender(sender,email, shorten_link)
@@ -39,6 +29,32 @@ class EmailMailer < ApplicationMailer
      mail(to: @sender.email, subject: 'Please answer the Question')
    end
 
+
+  # For sending mail to multiple listeners after 24 hours.
+  def self.mail_listener_24hours(emails)
+    emails.each do |email|
+      listener_id = email.listener_id
+      @listener = EmailSender.where(:id => listener_id).first
+  
+      # send email
+      listener_mail(@listener, email).deliver
+    end
+  end
+
+
+  # Mail send to listeners
+  def listener_mail(listener , email)
+    # Generate unique token for each listener and update the email with listener link.
+    # return @shorten_link
+
+    @listener = listener
+    create_listener_details(@listener, email)
+    # Email send to particular listener for showing the response.
+    mail(to: @listener.email, subject: 'We have a message for you') 
+  end
+
+
+   # Generate unique token
    def generate_unique_link(email)
     loop do
       token = Digest::SHA1.hexdigest email +  SecureRandom.hex
