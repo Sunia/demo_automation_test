@@ -13,7 +13,8 @@ class Email < ActiveRecord::Base
 
       # Find the listener from the EmailSender.
       listener = EmailSender.find(listener_id)
-      email_details[:listener] = listener.first_name
+      email_details[:listener_firstname] = listener.first_name
+      email_details[:listener_lastname] = listener.last_name
       email_details[:question] =  question
       email_details[:sender_ids] = sender_ids.reject! { |c| c.blank? }
       return email_details

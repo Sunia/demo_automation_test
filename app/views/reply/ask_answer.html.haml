@@ -1,11 +1,14 @@
 .heading-buttons
   %br
   %br
-  %h3
-    Submit Answer
-    %span | Please give the answer of the following question.
+  %h5
+    Hi 
+    = @sender 
+    ,
+    = @question 
   .clearfix
 
+%br
 .innerLR
   = form_for :sender_detail, :url => {:controller => "reply", :action => "submit_answer", :method => "post" } do |f|
 
@@ -14,21 +17,13 @@
         .tab-content
           #productDescriptionTab.tab-pane.active
 
-            // Question
-            .row-fluid
-              %strong
-                = @question
-                .separator
-            %hr.separator.bottom/
-
             // Listener
             .row-fluid
               .span3
-                %strong Your Answer
-                %p.muted Please give your answer of the mentioned question.
+                %p.muted Please say something nice about him
               .span9
-                %label{:for => "inputTitle"} Answer
-                = f.text_field :reply, placeholder: "Your answer...", required: true
+                %label{:for => "inputTitle"} Reply
+                = f.text_field :reply, placeholder: "Type a short message for " + @listener.first_name + " here", required: true 
 
                 // Sender
                 = f.hidden_field :id, value: @sender_detail.id
@@ -37,7 +32,7 @@
 
       .heading-buttons
         .buttons.pull-right{:style => "margin: 0;"}
-          = f.submit "Submit your answer", :class => "btn btn-primary btn-icon glyphicons ok_2"
+          = f.submit "Send", :class => "btn btn-primary btn-icon glyphicons ok_2"
 
 %br
 %br

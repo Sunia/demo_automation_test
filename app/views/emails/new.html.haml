@@ -29,11 +29,13 @@
             .row-fluid
               .span3
                 %strong Add Listener
-                %p.muted Add Listener on the behalf of which you want to ask question.
+                %p.muted Add Listener on the behalf of which you want to ask a question.
               .span9
                 %label{:for => "inputTitle"} Listener Name
-                = f.email_field :listener_id, placeholder: "Add Listener's email here", required: true
-                %input{:name => "first_name", :type => "text", :placeholder => "Add Listener name here", :required => true}/
+                %input{:name => "first_name", :type => "text", :placeholder => "First name", :required => true}/
+                %input{:name => "last_name", :type => "text", :placeholder => "Last name", :required => true}/
+                %label{:for => "inputTitle"} Listener email address
+                = f.email_field :listener_id, placeholder: "email", required: true
                 =# f.collection_select :listener_id, User.order(:username),:id,:username, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
                 .separator
             %hr.separator.bottom/

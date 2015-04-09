@@ -8,8 +8,11 @@ class ReplyController < ApplicationController
       flash[:notice] = "Invalid Token"
       redirect_to sorry_path
     else
-      email = Email.find(@sender_detail.email_id)
-      @question = email.question
+      @sender = EmailSender.find(@sender_detail.user_id).email
+      
+      @email = Email.find(@sender_detail.email_id)
+      @listener = EmailSender.find(@email.listener_id)
+      @question = @email.question
     end
   end
 
