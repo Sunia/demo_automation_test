@@ -20,13 +20,12 @@ class ReplyController < ApplicationController
     # Find the record of the Sender details and update reply and status of reply.
     @sender_detail = SenderDetail.find(params[:sender_detail][:id])
     @sender_detail.update_attributes(:reply => params[:sender_detail][:reply], :reply_time => Time.now, :is_replied => true)
-
+    all_senders_replied = all_replied
    # Check whether all senders have replied to the answer
-   if all_replied
+   if all_senders_replied
     # send email to listener.
      send_mail_to_listener
    end
-
    redirect_to thanks_path
   end
 
@@ -39,11 +38,11 @@ class ReplyController < ApplicationController
 
      #@senders.each {|sender| sender.is_replied == true ? all_replied = true : all_replied = false}
      @senders.each do |sender|
-       all_replied = false and return if sender.is_replied == false
-         
+       if sender.is_replied == false
+        return false
+       end 
        all_replied = true if sender.is_replied == true
      end
-       
      return all_replied
    end
 
