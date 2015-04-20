@@ -26,6 +26,8 @@ class EmailMailer < ApplicationMailer
      @shorten_link = shorten_link
      @email = email
      @sender = sender
+     attachments.inline['smile-img.jpg'] = File.read(Rails.root.join('app/assets/images/smile-img.jpg'))
+     #attachments.inline['main-bg.jpg'] = File.read(Rails.root.join('app/assets/images/main-bg.jpg'))
      mail(to: @sender.email, subject: 'Please answer the Question')
    end
 

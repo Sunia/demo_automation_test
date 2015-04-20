@@ -1,12 +1,55 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <b> Hi. <%= @email[:listener_firstname] %> <%= @email[:listener_lastname] %> needs your help. <%= @email[:question] %> </b>
-    <br>
-    Pls reply by clicking this link: <%= @shorten_link %>
-    <br>
-  </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Email Template</title>
+
+</head>
+
+<body topmargin="0" leftmargin="0">
+<table border="0" cellpadding="0" cellspacing="0" style="width:480px;margin: 0 auto; font-family:Arial, Gadget, sans-serif; border: 1px solid #afacad">
+	<tr>
+    	<td align="center" style="text-align:center;width:100%; border:2px solid #86898e" colspan="3"><h1>Say Something Nice</h1></td>
+    </tr>
+    <tr>
+    	<td style="width:80px;"></td>
+        <td style="width:287px; padding: 40px 0 10px" valign="top" align="left" colspan="3">
+            <div style="width:287px;background: #fbf9fa; 
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZiZjlmYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjMGMwYzAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #fbf9fa 0%, #c0c0c0 100%); 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fbf9fa), color-stop(100%,#c0c0c0));
+background: -webkit-linear-gradient(top,  #fbf9fa 0%,#c0c0c0 100%); 
+background: -o-linear-gradient(top,  #fbf9fa 0%,#c0c0c0 100%);
+background: -ms-linear-gradient(top,  #fbf9fa 0%,#c0c0c0 100%);
+background: linear-gradient(to bottom,  #fbf9fa 0%,#c0c0c0 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbf9fa', endColorstr='#c0c0c0',GradientType=0 );-webkit-border-radius: 25px;-moz-border-radius: 25px;border-radius: 25px;">
+        	<table border="0" cellpadding="0" cellspacing="0" style="width:287px;height:225px; font-size: 18px;">
+            	<tr>
+                	<td style="text-align:left; height:20px; line-height: 50px"><p style="padding:10px 20px 0; margin:0">Hi <%= @sender[:email] %> </p></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center"><p style="padding:10px 20px 0; margin:0"> <%= @email[:listener_firstname] %> <%= @email[:listener_lastname] %> needs your help.<br> <%= @email[:question] %>.. Say something nice..</p></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><p style="padding:0 20px 0; margin:0"><p style="padding:10px 20px 0; margin:0">Thanks<br> <%= @email[:questioner] %> </p></td>
+                 </tr>
+            </table>
+            </div>
+        </td>
+        <td style="width:100px"></td>
+    </tr>
+    <tr>
+    	<td style="width:80px;"></td>
+    	<td style="padding: 0px 0 20px; text-align:center">
+        <!-- ><a href="#" style="display:block; width:280px; height:30px; background:#57758f; -webkit-border-radius: 25px;-moz-border-radius: 25px;border-radius: 25px; color:#fff; line-height:30px; text-align:center; text-decoration:none">Click to reply</a></td> -->
+        <%= link_to 'Click to reply', @shorten_link, { :style => "display:block; width:280px; height:30px; background:#57758f; -webkit-border-radius: 25px;-moz-border-radius: 25px;border-radius: 25px; color:#fff; line-height:30px; text-align:center; text-decoration:none"} %>
+        <td></td>
+    </tr>
+    <tr>
+    	<td style="text-align:right; padding-bottom: 15px;" colspan="3">
+    		<%= image_tag attachments['smile-img.jpg'].url , :width => "57", :height => "57",  :style => "margin-right: 80px;" %>
+    	</td>
+    </tr>
+</table>
+</body>
 </html>
