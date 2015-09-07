@@ -32,7 +32,6 @@
 }
 body {
   font-family: 'Open Sans', sans-serif;
-  background: #ffffff url("../images/pattern1.png") repeat;
   font-size: 13px;
 }
 *,
@@ -388,7 +387,6 @@ body > .container-fluid.documentation {
   height: 39px;
   line-height: 39px;
   padding: 0 10px;
-  background: #ffffff url("../images/mosaic-pattern.png") repeat;
   border-bottom: 1px solid #e5e5e5;
   margin: 0 0 10px;
   font-weight: 400;
@@ -453,7 +451,7 @@ body > .container-fluid.documentation {
   border-left: none;
 }
 #footer {
-  background: rgba(0, 0, 0, 0.9) url("../images/mosaic-pattern.png") repeat;
+
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
   padding: 10px 10px 30px;
@@ -895,7 +893,6 @@ body > .container-fluid.documentation {
 }
 .navbar.main {
   height: 46px;
-  background: #e04545 url("../images/mosaic-pattern.png") repeat;
   margin: 0;
   position: relative;
 }
@@ -1361,7 +1358,7 @@ body > .container-fluid.documentation {
   padding: 0;
 }
 .widget > .widget-head {
-  background: #f8f8f8 url("../images/mosaic-pattern.png") repeat;
+
   border-bottom: 1px solid #e5e5e5;
   color: #fff;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -2062,7 +2059,6 @@ body > .container-fluid.documentation {
   background-color: #e1e1e1;
 }
 .widget-stats.dark {
-  background: #64625f url("../images/mosaic-pattern.png") repeat;
   border-color: #64625f;
 }
 .widget-stats.dark .glyphicons i:before {
@@ -2072,7 +2068,6 @@ body > .container-fluid.documentation {
   background-color: #4a4846;
 }
 .widget-stats.primary {
-  background: #e04545 url("../images/mosaic-pattern.png") repeat;
   border-color: #e04545;
 }
 .widget-stats.primary .glyphicons i:before {
@@ -2169,7 +2164,6 @@ body > .container-fluid.documentation {
   color: #7c7c7c;
 }
 .widget-sidebar-stats.widget-stats-easy-pie {
-  background: #ffffff url("../images/mosaic-pattern.png") repeat;
   color: #222;
 }
 .widget-sidebar-stats.widget-stats-easy-pie .easy-pie {
@@ -4187,7 +4181,7 @@ textarea {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
 .popover .popover-title {
-  background-image: url("../images/mosaic-pattern.png");
+
   background-repeat: repeat;
   font-weight: 600;
   padding: 0 10px;
@@ -4224,7 +4218,7 @@ textarea {
   height: 29px;
   line-height: 29px;
   border-color: #e5e5e5;
-  background: #fafafa url("../images/mosaic-pattern.png") repeat;
+
 }
 .modal .modal-header h3 {
   font-size: 14px;
@@ -4376,7 +4370,7 @@ textarea {
   border-radius: 0 0 0 0;
 }
 .accordion .accordion-heading .accordion-toggle {
-  background: #fafafa url("../images/mosaic-pattern.png") repeat;
+
   color: #222;
   text-decoration: none;
   font-weight: 600;
@@ -4512,26 +4506,26 @@ textarea {
   border-radius: 0 0 0 0;
 }
 .notyfy_wrapper.notyfy_alert {
-  background: #ffffff url("../images/mosaic-pattern.png") repeat;
+
 }
 .notyfy_wrapper.notyfy_error {
-  background: #bd362f url("../images/mosaic-pattern.png") repeat;
+
   color: #fff;
 }
 .notyfy_wrapper.notyfy_success {
-  background: #51a351 url("../images/mosaic-pattern.png") repeat;
+
   color: #fff;
 }
 .notyfy_wrapper.notyfy_warning {
-  background: #74614f url("../images/mosaic-pattern.png") repeat;
+
   color: #fff;
 }
 .notyfy_wrapper.notyfy_information {
-  background: #57b7e2 url("../images/mosaic-pattern.png") repeat;
+
   color: #fff;
 }
 .notyfy_wrapper.notyfy_confirm {
-  background: #ffffff url("../images/mosaic-pattern.png") repeat;
+
 }
 .notyfy_wrapper.notyfy_primary {
   background: #e04545;
@@ -4910,7 +4904,7 @@ textarea {
   }
 }
 body.login {
-  background: #fafafa url("../images/mosaic-pattern.png") repeat;
+
 }
 body.login #login {
   padding: 100px 0;
@@ -5507,7 +5501,7 @@ a.thumbnail:focus {
 #landing_1 .mosaic-line {
   height: 58px;
   line-height: 58px;
-  background: #ffffff url("../images/mosaic-pattern.png") repeat;
+
   border-bottom: 1px solid #e5e5e5;
 }
 #landing_1 .banner-1 {
@@ -5591,7 +5585,7 @@ a.thumbnail:focus {
 #landing_2 .mosaic-line {
   height: 58px;
   line-height: 58px;
-  background: #ffffff url("../images/mosaic-pattern.png") repeat;
+
   border-bottom: 1px solid #e5e5e5;
 }
 #landing_2 .mosaic-line h4 {
