@@ -11,9 +11,9 @@ require 'headless'
 # headless = Headless.new
 # headless.start
 
-at_exit do
- headless.destroy
-end
+# at_exit do
+#  headless.destroy
+# end
 
 ActionController::Base.allow_rescue = false
 

@@ -14,7 +14,8 @@ When(/^I provide the valid credentials$/)do
 end
 
 Then(/^I should be successfully logged in$/)do
-  #expect(page).to have_content("Welcome, #{@user.first_name} #{@user.last_name}")
+  sleep(10)
+  expect(page).to have_content("Signed in successfully.")
 end
 
 #========================================================
@@ -26,14 +27,15 @@ end
 
 When(/^I provide the invalid credentials$/)do
  
-  fill_in "_email", :with => "xyz@example.com"
-  fill_in "_password", :with => "123456"
+  fill_in "user_email", :with => "xyz@example.com"
+  fill_in "user_password", :with => "123456"
   page.execute_script("$('.signinbutton').click()")
 
 end
 
 Then(/^I should not be logged in$/)do
-  expect(page).to have_content("Invalid email/password")
+  sleep(10)
+  expect(page).to have_content("Invalid email or password.")
 end
 
 #=============================================================================

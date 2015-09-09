@@ -46,3 +46,21 @@ gem 'devise'
 gem 'rails_12factor', group: :production
 gem 'haml-rails'
 gem 'rails_admin'
+
+
+group :development, :test do
+  gem 'capybara'
+  gem 'capybara-angular'
+  gem 'cucumber-rails', :require => false
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  gem 'headless'
+end
+
+gem 'chromedriver-helper'
+gem 'timecop'
