@@ -7,9 +7,10 @@ Given(/^I am on the login page$/)do
 end
 
 When(/^I provide the valid credentials$/)do
-
+  sleep(15)
   fill_in "user_email", :with => @user.email
   fill_in "user_password", :with => @user.password
+  sleep(15)
   page.execute_script("$('.signinbutton').click()")
 end
 
@@ -26,9 +27,10 @@ Given(/^I am on login page$/)do
 end
 
 When(/^I provide the invalid credentials$/)do
- 
+  
   fill_in "user_email", :with => "xyz@example.com"
   fill_in "user_password", :with => "123456"
+  sleep(25)
   page.execute_script("$('.signinbutton').click()")
 
 end
